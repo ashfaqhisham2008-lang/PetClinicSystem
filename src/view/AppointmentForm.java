@@ -167,6 +167,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         tblAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -432,6 +433,17 @@ public class AppointmentForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        
+        txtAppointmentID.setText("");
+        txtAppointmentDate.setText("");
+        txtAppointmentTime.setText("");
+        txtReason.setText("");
+        txtSearchAppointmentID.setText("");
+        cmbPetID.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,12 @@
  */
 package view;
 
+import controller.PaymentController;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import model.Payment;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ashfa
@@ -17,6 +23,66 @@ public class PaymentForm extends javax.swing.JFrame {
      */
     public PaymentForm() {
         initComponents();
+        loadAppointmentIDs();
+        loadPayments();
+    }
+    
+    public void loadAppointmentIDs() {
+        
+        try {
+            
+            PaymentController controller = new PaymentController();
+            
+            ResultSet rs = controller.getAppointmentIDs();
+            
+            cmbAppointmentID.removeAllItems();
+            
+            while(rs.next()) {
+                
+                cmbAppointmentID.addItem(String.valueOf(rs.getInt("appointment_ID")));
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+    public void loadPayments() {
+        
+        try {
+            
+            PaymentController controller = new PaymentController();
+            
+            ResultSet rs = controller.getAllPayments();
+            
+            DefaultTableModel model = (DefaultTableModel) tblPayment.getModel();
+            
+            model.setRowCount(0);
+            
+            while(rs.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    rs.getInt("payment_ID"),
+                    rs.getInt("appointment_ID"),
+                    rs.getDouble("amount"),
+                    rs.getString("payment_date"),
+                    rs.getString("payment_method")
+                    
+                });
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
     }
 
     /**
@@ -28,21 +94,372 @@ public class PaymentForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtPaymentMethod = new javax.swing.JTextField();
+        txtPaymentDate = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
+        txtPaymentID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtSearchPaymentID = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPayment = new javax.swing.JTable();
+        btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        cmbAppointmentID = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setText("Payment Management");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(354, 354, 354)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27))
+        );
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Payment ID");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Appointment ID");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Amount");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Payment Date");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Payment Method");
+
+        txtPaymentID.setEditable(false);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Search Payment ID");
+
+        tblPayment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Payment ID", "Appointment ID", "Amount", "Payment Date", "Payment Method"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblPayment);
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(this::btnSaveActionPerformed);
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
+
+        cmbAppointmentID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPaymentMethod)
+                            .addComponent(txtPaymentDate)
+                            .addComponent(txtAmount)
+                            .addComponent(txtPaymentID)
+                            .addComponent(cmbAppointmentID, 0, 275, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtSearchPaymentID, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtPaymentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSearchPaymentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cmbAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPaymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete)
+                            .addComponent(btnClear)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
+        int appointmentID = Integer.parseInt(cmbAppointmentID.getSelectedItem().toString());
+        double amount = Double.parseDouble(txtAmount.getText());
+        String paymentDate = txtPaymentDate.getText();
+        String paymentMethod = txtPaymentMethod.getText();
+        
+        Payment payment = new Payment();
+        
+        payment.setAppointmentID(appointmentID);
+        payment.setAmount(amount);
+        payment.setPaymentDate(paymentDate);
+        payment.setPaymentMethod(paymentMethod);
+        
+        PaymentController controller = new PaymentController();
+        
+        boolean result = controller.addPayment(payment);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Payment Saved Successfully!");
+            
+            txtPaymentID.setText("");
+            txtAmount.setText("");
+            txtPaymentDate.setText("");
+            txtPaymentMethod.setText("");
+            txtSearchPaymentID.setText("");
+            cmbAppointmentID.setSelectedIndex(0);
+            
+            loadPayments();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Payment Save Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        
+        int paymentID = Integer.parseInt(txtSearchPaymentID.getText());
+        
+        PaymentController controller = new PaymentController();
+        
+        ResultSet rs = controller.searchPayment(paymentID);
+        
+        try {
+            
+            if(rs.next()) {
+                
+                txtPaymentID.setText(String.valueOf(rs.getInt("payment_ID")));
+                cmbAppointmentID.setSelectedItem(String.valueOf(rs.getInt("appointment_ID")));
+                txtAmount.setText(String.valueOf(rs.getDouble("amount")));
+                txtPaymentDate.setText(rs.getString("payment_date"));
+                txtPaymentMethod.setText(rs.getString("payment_method"));
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Payment Not Found!");
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        int paymentID = Integer.parseInt(txtPaymentID.getText());
+        int appointmentID = Integer.parseInt(cmbAppointmentID.getSelectedItem().toString());
+        double amount = Double.parseDouble(txtAmount.getText());
+        String paymentDate = txtPaymentDate.getText();
+        String paymentMethod = txtPaymentMethod.getText();
+        
+        Payment payment = new Payment();
+        
+        payment.setPaymentID(paymentID);
+        payment.setAppointmentID(appointmentID);
+        payment.setAmount(amount);
+        payment.setPaymentDate(paymentDate);
+        payment.setPaymentMethod(paymentMethod);
+        
+        PaymentController controller = new PaymentController();
+
+        boolean result = controller.updatePayment(payment);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Payment Updated Successfully!");
+            
+            txtPaymentID.setText("");
+            txtAmount.setText("");
+            txtPaymentDate.setText("");
+            txtPaymentMethod.setText("");
+            txtSearchPaymentID.setText("");
+            cmbAppointmentID.setSelectedIndex(0);
+            
+            loadPayments();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Payment Update Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        
+        txtPaymentID.setText("");
+        txtAmount.setText("");
+        txtPaymentDate.setText("");
+        txtPaymentMethod.setText("");
+        txtSearchPaymentID.setText("");
+        cmbAppointmentID.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this payment?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        
+        if(answer == JOptionPane.YES_OPTION) {
+            
+            int paymentID = Integer.parseInt(txtPaymentID.getText());
+            
+            PaymentController controller = new PaymentController();
+            
+            boolean result = controller.deletePayment(paymentID);
+            
+            if(result == true) {
+                
+                JOptionPane.showMessageDialog(this, "Payment Deleted Successfully!");
+                
+                txtPaymentID.setText("");
+                txtAmount.setText("");
+                txtPaymentDate.setText("");
+                txtPaymentMethod.setText("");
+                txtSearchPaymentID.setText("");
+                cmbAppointmentID.setSelectedIndex(0);
+                
+                loadPayments();
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Payment Delete Failed!");
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +487,27 @@ public class PaymentForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbAppointmentID;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblPayment;
+    private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtPaymentDate;
+    private javax.swing.JTextField txtPaymentID;
+    private javax.swing.JTextField txtPaymentMethod;
+    private javax.swing.JTextField txtSearchPaymentID;
     // End of variables declaration//GEN-END:variables
 }
