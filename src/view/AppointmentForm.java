@@ -4,6 +4,12 @@
  */
 package view;
 
+import controller.AppointmentController;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import model.Appointment;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ashfa
@@ -17,6 +23,66 @@ public class AppointmentForm extends javax.swing.JFrame {
      */
     public AppointmentForm() {
         initComponents();
+        loadPetIDs();
+        loadAppointments();
+    }
+    
+    public void loadPetIDs() {
+        
+        try {
+            
+            AppointmentController controller = new AppointmentController();
+            
+            ResultSet rs = controller.getPetIDs();
+            
+            cmbPetID.removeAllItems();
+            
+            while(rs.next()) {
+                
+                cmbPetID.addItem(String.valueOf(rs.getInt("pet_ID")));
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+    public void loadAppointments() {
+        
+        try {
+            
+            AppointmentController controller = new AppointmentController();
+            
+            ResultSet rs = controller.getAllAppointments();
+            
+            DefaultTableModel model = (DefaultTableModel) tblAppointment.getModel();
+            
+            model.setRowCount(0);
+            
+            while(rs.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    rs.getInt("appointment_ID"),
+                    rs.getInt("pet_ID"),
+                    rs.getString("appointment_date"),
+                    rs.getString("appointment_time"),
+                    rs.getString("service_type")
+                    
+                });
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
     }
 
     /**
@@ -28,21 +94,344 @@ public class AppointmentForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtAppointmentID = new javax.swing.JTextField();
+        txtAppointmentDate = new javax.swing.JTextField();
+        txtAppointmentTime = new javax.swing.JTextField();
+        txtReason = new javax.swing.JTextField();
+        cmbPetID = new javax.swing.JComboBox<>();
+        btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAppointment = new javax.swing.JTable();
+        txtSearchAppointmentID = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setText("Appointment Management");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(326, 326, 326)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Appointment ID");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Pet ID");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Appointment Date");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Appointment Time");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Reason");
+
+        txtAppointmentID.setEditable(false);
+
+        cmbPetID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(this::btnSaveActionPerformed);
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
+
+        btnClear.setText("Clear");
+
+        tblAppointment.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Appointment ID", "Pet ID", "Appointment Date", "Appointment Time", "Reason"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblAppointment);
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Search Appointment ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAppointmentID)
+                            .addComponent(txtAppointmentDate)
+                            .addComponent(txtAppointmentTime)
+                            .addComponent(txtReason)
+                            .addComponent(cmbPetID, 0, 275, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(22, 22, 22))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(txtSearchAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(48, 48, 48)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(230, 230, 230)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cmbPetID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtAppointmentTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtReason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnClear)
+                            .addComponent(btnDelete)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnSave))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSearchAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
+        int petID = Integer.parseInt(cmbPetID.getSelectedItem().toString());
+        String appointmentDate = txtAppointmentDate.getText();
+        String appointmentTime = txtAppointmentTime.getText();
+        String reason = txtReason.getText();
+        
+        Appointment appointment = new Appointment();
+        
+        appointment.setPetID(petID);
+        appointment.setAppointmentDate(appointmentDate);
+        appointment.setAppointmentTime(appointmentTime);
+        appointment.setReason(reason);
+        
+        AppointmentController controller = new AppointmentController();
+        
+        boolean result = controller.addAppointment(appointment);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Appointment Saved Successfully!");
+            
+            txtAppointmentID.setText("");
+            txtAppointmentDate.setText("");
+            txtAppointmentTime.setText("");
+            txtReason.setText("");
+            txtSearchAppointmentID.setText("");
+            cmbPetID.setSelectedIndex(0);
+            
+            loadAppointments();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Appointment Save Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        
+        int appointmentID = Integer.parseInt(txtSearchAppointmentID.getText());
+        
+        AppointmentController controller = new AppointmentController();
+        
+        ResultSet rs = controller.searchAppointment(appointmentID);
+        
+        try {
+            
+            if(rs.next()) {
+                
+                txtAppointmentID.setText(String.valueOf(rs.getInt("appointment_ID")));
+                cmbPetID.setSelectedItem(String.valueOf(rs.getInt("pet_ID")));
+                txtAppointmentDate.setText(rs.getString("appointment_date"));
+                txtAppointmentTime.setText(rs.getString("appointment_time"));
+                txtReason.setText(rs.getString("service_type"));
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Appointment Not Found!");
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        int appointmentID = Integer.parseInt(txtAppointmentID.getText());
+        int petID = Integer.parseInt(cmbPetID.getSelectedItem().toString());
+        String appointmentDate = txtAppointmentDate.getText();
+        String appointmentTime = txtAppointmentTime.getText();
+        String reason = txtReason.getText();
+        
+        Appointment appointment = new Appointment();
+        
+        appointment.setAppointmentID(appointmentID);
+        appointment.setPetID(petID);
+        appointment.setAppointmentDate(appointmentDate);
+        appointment.setAppointmentTime(appointmentTime);
+        appointment.setReason(reason);
+        
+        AppointmentController controller = new AppointmentController();
+        
+        boolean result = controller.updateAppointment(appointment);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Appointment Updated Successfully!");
+            
+            txtAppointmentID.setText("");
+            txtAppointmentDate.setText("");
+            txtAppointmentTime.setText("");
+            txtReason.setText("");
+            txtSearchAppointmentID.setText("");
+            cmbPetID.setSelectedIndex(0);
+            
+            loadAppointments();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Appointment Update Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this appointment?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        
+        if(answer == JOptionPane.YES_OPTION) {
+            
+            int appointmentID = Integer.parseInt(txtAppointmentID.getText());
+            
+            AppointmentController controller = new AppointmentController();
+            
+            boolean result = controller.deleteAppointment(appointmentID);
+            
+            if(result == true) {
+                
+                JOptionPane.showMessageDialog(this, "Appointment Deleted Successfully!");
+                
+                txtAppointmentID.setText("");
+                txtAppointmentDate.setText("");
+                txtAppointmentTime.setText("");
+                txtReason.setText("");
+                txtSearchAppointmentID.setText("");
+                cmbPetID.setSelectedIndex(0);
+
+                loadAppointments();
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Appointment Delete Failed!");
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +459,26 @@ public class AppointmentForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbPetID;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAppointment;
+    private javax.swing.JTextField txtAppointmentDate;
+    private javax.swing.JTextField txtAppointmentID;
+    private javax.swing.JTextField txtAppointmentTime;
+    private javax.swing.JTextField txtReason;
+    private javax.swing.JTextField txtSearchAppointmentID;
     // End of variables declaration//GEN-END:variables
 }
