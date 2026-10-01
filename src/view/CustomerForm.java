@@ -125,7 +125,7 @@ public class CustomerForm extends javax.swing.JFrame {
         btnClear.setText("Clear");
         btnClear.addActionListener(this::btnClearActionPerformed);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Search Customer ID");
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,6 +276,24 @@ public class CustomerForm extends javax.swing.JFrame {
         String phone = txtPhone.getText();
         String address = txtAddress.getText();
         
+        if(txtCustomerName.getText().trim().isEmpty()
+                || txtPhone.getText().trim().isEmpty()
+                || txtAddress.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            
+            return;
+            
+        }
+        
+        if(phone.length() != 10) {
+            
+            JOptionPane.showMessageDialog(this, "Phone number must contain exactly 10 digits!");
+            
+            return;
+            
+        }
+        
         Customer customer = new Customer();
         
         customer.setCustomerName(customerName);
@@ -294,6 +312,7 @@ public class CustomerForm extends javax.swing.JFrame {
             txtCustomerName.setText("");
             txtPhone.setText("");
             txtAddress.setText("");
+            txtSearchID.setText("");
             
             loadCustomers();
             
@@ -322,6 +341,10 @@ public class CustomerForm extends javax.swing.JFrame {
                 txtPhone.setText(rs.getString("phone"));
                 txtAddress.setText(rs.getString("address"));
                 
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Customer Not Found!");
+                
             }
             
         } catch (Exception e) {
@@ -338,6 +361,24 @@ public class CustomerForm extends javax.swing.JFrame {
         String customerName = txtCustomerName.getText();
         String phone = txtPhone.getText();
         String address = txtAddress.getText();
+        
+        if(txtCustomerName.getText().trim().isEmpty()
+                || txtPhone.getText().trim().isEmpty()
+                || txtAddress.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            
+            return;
+            
+        }
+        
+        if(phone.length() != 10) {
+            
+            JOptionPane.showMessageDialog(this, "Phone number must contain exactly 10 digits!");
+            
+            return;
+            
+        }
         
         Customer customer = new Customer();
         
@@ -358,6 +399,7 @@ public class CustomerForm extends javax.swing.JFrame {
             txtCustomerName.setText("");
             txtPhone.setText("");
             txtAddress.setText("");
+            txtSearchID.setText("");
             
             loadCustomers();
             
@@ -371,26 +413,33 @@ public class CustomerForm extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
-        int customerID = Integer.parseInt(txtCustomerID.getText());
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this customer?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         
-        CustomerController controller = new CustomerController();
-        
-        boolean result = controller.deleteCustomer(customerID);
-        
-        if(result == true) {
+        if(answer == JOptionPane.YES_OPTION) {
             
-            JOptionPane.showMessageDialog(this, "Customer Deleted Successfullly!");
+            int customerID = Integer.parseInt(txtCustomerID.getText());
             
-            txtCustomerID.setText("");
-            txtCustomerName.setText("");
-            txtPhone.setText("");
-            txtAddress.setText("");
+            CustomerController controller = new CustomerController();
             
-            loadCustomers();
+            boolean result = controller.deleteCustomer(customerID);
             
-        }else{
+            if(result == true) {
+                
+                JOptionPane.showMessageDialog(this, "Customer Deleted Successfully!");
+                
+                txtCustomerID.setText("");
+                txtCustomerName.setText("");
+                txtPhone.setText("");
+                txtAddress.setText("");
+                txtSearchID.setText("");
             
-            JOptionPane.showMessageDialog(this, "Customer Deletion Failed!");
+                loadCustomers();
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this,"Customer Deletion Failed!");
+                
+            }
             
         }
         
@@ -402,6 +451,7 @@ public class CustomerForm extends javax.swing.JFrame {
         txtCustomerName.setText("");
         txtPhone.setText("");
         txtAddress.setText("");
+        txtSearchID.setText("");
         
     }//GEN-LAST:event_btnClearActionPerformed
 

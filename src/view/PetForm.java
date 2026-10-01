@@ -4,6 +4,14 @@
  */
 package view;
 
+import controller.PetController;
+import java.sql.ResultSet;
+import exception.InvalidAgeException;
+import java.util.HashSet;
+import model.Pet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ashfa
@@ -17,6 +25,66 @@ public class PetForm extends javax.swing.JFrame {
      */
     public PetForm() {
         initComponents();
+        loadCustomerIDs();
+        loadPets();
+    }
+    
+    public void loadCustomerIDs() {
+        
+        try {
+            
+            PetController controller = new PetController();
+            
+            ResultSet rs = controller.getCustomerIDs();
+            
+            cmbCustomerID.removeAllItems();
+            
+            while(rs.next()) {
+                
+                cmbCustomerID.addItem(String.valueOf(rs.getInt("customer_ID")));
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+    public void loadPets() {
+        
+        try {
+            
+            PetController controller = new PetController();
+            
+            ResultSet rs = controller.getAllPets();
+            
+            DefaultTableModel model = (DefaultTableModel) tblPets.getModel();
+            
+            model.setRowCount(0);
+            
+            while(rs.next()) {
+                
+                model.addRow(new Object[]{
+                
+                    rs.getInt("pet_ID"),
+                    rs.getString("pet_name"),
+                    rs.getString("pet_type"),
+                    rs.getInt("pet_age"),
+                    rs.getInt("customer_ID")
+                
+                });
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
     }
 
     /**
@@ -28,21 +96,394 @@ public class PetForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtPetID = new javax.swing.JTextField();
+        txtPetName = new javax.swing.JTextField();
+        txtPetType = new javax.swing.JTextField();
+        txtPetAge = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPets = new javax.swing.JTable();
+        txtSearchPetID = new javax.swing.JTextField();
+        cmbCustomerID = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setText("Pet Management");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(361, 361, 361)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        jLabel2.setText("Pet ID");
+
+        jLabel3.setText("Pet Name");
+
+        jLabel4.setText("Pet Type");
+
+        jLabel5.setText("Pet Age");
+
+        jLabel6.setText("Customer ID");
+
+        txtPetID.setEditable(false);
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(this::btnSaveActionPerformed);
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Search Pet ID");
+
+        tblPets.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Pet ID", "Pet Name", "Pet Type", "Pet Age", "Customer ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblPets);
+
+        cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(63, 63, 63)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPetAge)
+                            .addComponent(txtPetType)
+                            .addComponent(txtPetName)
+                            .addComponent(txtPetID)
+                            .addComponent(cmbCustomerID, 0, 275, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtSearchPetID, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtPetID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSearchPetID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtPetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPetType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtPetAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cmbCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnClear)
+                            .addComponent(btnDelete)
+                            .addComponent(btnSave)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
+        String petName = txtPetName.getText();
+        String petType = txtPetType.getText();
+        int petAge = Integer.parseInt(txtPetAge.getText());
+        int customerID = Integer.parseInt(cmbCustomerID.getSelectedItem().toString());
+        
+        try {
+            
+            if(petAge <= 0) {
+                
+                throw new InvalidAgeException("Pet Age cannot be zero or negative!");
+                
+            }
+            
+        } catch (InvalidAgeException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+            return;
+            
+        }
+        
+        Pet pet = new Pet();
+        
+        pet.setPetName(petName);
+        pet.setPetType(petType);
+        pet.setPetAge(petAge);
+        pet.setCustomerID(customerID);
+        
+        PetController controller = new PetController();
+        
+        boolean result = controller.addPet(pet);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Pet Saved Successfully!");
+            
+            txtPetID.setText("");
+            txtPetName.setText("");
+            txtPetType.setText("");
+            txtPetAge.setText("");
+            txtSearchPetID.setText("");
+            cmbCustomerID.setSelectedIndex(0);
+            
+            loadPets();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Pet Save Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        
+        txtPetID.setText("");
+        txtPetName.setText("");
+        txtPetType.setText("");
+        txtPetAge.setText("");
+        txtSearchPetID.setText("");
+        cmbCustomerID.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        
+        int petID = Integer.parseInt(txtSearchPetID.getText());
+        
+        PetController controller = new PetController();
+        
+        ResultSet rs = controller.searchPet(petID);
+        
+        try {
+            
+            if(rs.next()) {
+                
+                txtPetID.setText(String.valueOf(rs.getInt("pet_ID")));
+                txtPetName.setText(rs.getString("pet_name"));
+                txtPetType.setText(rs.getString("pet_type"));
+                txtPetAge.setText(String.valueOf(rs.getInt("pet_age")));
+                cmbCustomerID.setSelectedItem(String.valueOf(rs.getInt("customer_ID")));
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Pet Not Found!");
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        int petID = Integer.parseInt(txtPetID.getText());
+        String petName = txtPetName.getText();
+        String petType = txtPetType.getText();
+        int petAge = Integer.parseInt(txtPetAge.getText());
+        int customerID = Integer.parseInt(cmbCustomerID.getSelectedItem().toString());
+        
+        try {
+            
+            if(petAge <= 0) {
+                
+                throw new InvalidAgeException("Pet Age cannot be zero or negative!");
+                
+            }
+            
+        } catch (InvalidAgeException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return;
+            
+        }
+        
+        Pet pet = new Pet();
+        
+        pet.setPetID(petID);
+        pet.setPetName(petName);
+        pet.setPetType(petType);
+        pet.setPetAge(petAge);
+        pet.setCustomerID(customerID);
+        
+        PetController controller = new PetController();
+        
+        boolean result = controller.updatePet(pet);
+        
+        if(result == true) {
+            
+            JOptionPane.showMessageDialog(this, "Pet Updated Successfully!");
+            
+            txtPetID.setText("");
+            txtPetName.setText("");
+            txtPetType.setText("");
+            txtPetAge.setText("");
+            txtSearchPetID.setText("");
+            cmbCustomerID.setSelectedIndex(0);
+            
+            loadPets();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "Pet Update Failed!");
+            
+        }
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this pet?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        
+        if(answer == JOptionPane.YES_OPTION) {
+            
+            int petID = Integer.parseInt(txtPetID.getText());
+            
+            PetController controller = new PetController();
+            
+            boolean result = controller.deletePet(petID);
+            
+            if(result == true) {
+                
+                JOptionPane.showMessageDialog(this, "Pet Deleted Successfully!");
+                
+                txtPetID.setText("");
+                txtPetName.setText("");
+                txtPetType.setText("");
+                txtPetAge.setText("");
+                txtSearchPetID.setText("");
+                cmbCustomerID.setSelectedIndex(0);
+            
+                loadPets();
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Pet Delete Failed!");
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +511,27 @@ public class PetForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbCustomerID;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblPets;
+    private javax.swing.JTextField txtPetAge;
+    private javax.swing.JTextField txtPetID;
+    private javax.swing.JTextField txtPetName;
+    private javax.swing.JTextField txtPetType;
+    private javax.swing.JTextField txtSearchPetID;
     // End of variables declaration//GEN-END:variables
 }
