@@ -4,6 +4,13 @@
  */
 package view;
 
+import database.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ashfa
@@ -17,6 +24,85 @@ public class DashboardForm extends javax.swing.JFrame {
      */
     public DashboardForm() {
         initComponents();
+        loadDashboardCounts();
+        loadUpcomingAppointments();
+    }
+    
+    public void loadDashboardCounts() {
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            
+            String petsql = "SELECT COUNT(*) FROM pet";
+            
+            PreparedStatement petpst = connection.prepareStatement(petsql);
+            
+            ResultSet petRs = petpst.executeQuery();
+            
+            if(petRs.next()) {
+                
+                lblPets.setText(String.valueOf(petRs.getInt(1)));
+                
+            }
+            
+            String appointmentSql = "SELECT COUNT(*) FROM appointment";
+            
+            PreparedStatement appointmentpst = connection.prepareStatement(appointmentSql);
+            
+            ResultSet appointmentRs = appointmentpst.executeQuery();
+            
+            if(appointmentRs.next()) {
+                
+                lblAppointments.setText(String.valueOf(appointmentRs.getInt(1)));
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+    public void loadUpcomingAppointments() {
+        
+        try {
+            
+            Connection connection = DBConnection.getConnection();
+            
+            String sql = "SELECT a.appointment_ID, " + "p.pet_name, " + "c.customer_name, " + "a.appointment_date, " + "a.appointment_time, " + "a.service_type " + "FROM appointment a " +"INNER JOIN pet p " + "ON a.pet_ID = p.pet_ID " + "INNER JOIN customer c " +  "ON p.customer_ID = c.customer_ID";
+            
+            PreparedStatement pst = connection.prepareStatement(sql);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            DefaultTableModel model = (DefaultTableModel) tlbUpcomingAppointments.getModel();
+            
+            model.setRowCount(0);
+            
+            while(rs.next()) {
+                
+                model.addRow(new Object[] {
+                    
+                    rs.getInt("appointment_ID"),
+                    rs.getString("pet_name"),
+                    rs.getString("customer_name"),
+                    rs.getString("appointment_date"),
+                    rs.getString("appointment_time"),
+                    rs.getString("service_type")
+                    
+                });
+                
+            }
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        }
+        
     }
 
     /**
@@ -28,134 +114,357 @@ public class DashboardForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnCustomer = new javax.swing.JButton();
-        btnPet = new javax.swing.JButton();
-        btnAppointment = new javax.swing.JButton();
-        btnPayment = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnCustomers = new javax.swing.JButton();
+        btnPets = new javax.swing.JButton();
+        btnAppointments = new javax.swing.JButton();
+        btnPayments = new javax.swing.JButton();
+        btnReports = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        lblPets = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblAppointments = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        tblUpcomingAppointments = new javax.swing.JScrollPane();
+        tlbUpcomingAppointments = new javax.swing.JTable();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(30, 34, 48));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(24, 28, 40));
+        jPanel1.setForeground(new java.awt.Color(24, 28, 0));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pet Clinic Management System");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(285, 285, 285)
                 .addComponent(jLabel1)
-                .addGap(232, 232, 232))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        btnCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCustomer.setText("Customer Management");
-        btnCustomer.addActionListener(this::btnCustomerActionPerformed);
+        jPanel3.setBackground(new java.awt.Color(30, 34, 48));
 
-        btnPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnPet.setText("Pet Management");
-        btnPet.addActionListener(this::btnPetActionPerformed);
+        btnCustomers.setBackground(new java.awt.Color(17, 24, 39));
+        btnCustomers.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCustomers.setForeground(new java.awt.Color(255, 255, 255));
+        btnCustomers.setText("Customers");
+        btnCustomers.addActionListener(this::btnCustomersActionPerformed);
 
-        btnAppointment.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAppointment.setText("Appointment Management");
-        btnAppointment.addActionListener(this::btnAppointmentActionPerformed);
+        btnPets.setBackground(new java.awt.Color(17, 24, 39));
+        btnPets.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPets.setForeground(new java.awt.Color(255, 255, 255));
+        btnPets.setText("Pets");
+        btnPets.addActionListener(this::btnPetsActionPerformed);
 
-        btnPayment.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnPayment.setText("Payment Management");
-        btnPayment.addActionListener(this::btnPaymentActionPerformed);
+        btnAppointments.setBackground(new java.awt.Color(17, 24, 39));
+        btnAppointments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAppointments.setForeground(new java.awt.Color(255, 255, 255));
+        btnAppointments.setText("Appointments");
+        btnAppointments.addActionListener(this::btnAppointmentsActionPerformed);
 
-        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPayments.setBackground(new java.awt.Color(17, 24, 39));
+        btnPayments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnPayments.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayments.setText("Payments");
+        btnPayments.addActionListener(this::btnPaymentsActionPerformed);
+
+        btnReports.setBackground(new java.awt.Color(17, 24, 39));
+        btnReports.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnReports.setForeground(new java.awt.Color(255, 255, 255));
+        btnReports.setText("Reports");
+        btnReports.addActionListener(this::btnReportsActionPerformed);
+
+        btnExit.setBackground(new java.awt.Color(17, 24, 39));
+        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Exit");
         btnExit.addActionListener(this::btnExitActionPerformed);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAppointment)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPet, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnCustomers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+            .addComponent(btnPayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(btnCustomers)
+                .addGap(18, 18, 18)
+                .addComponent(btnPets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAppointments)
+                .addGap(18, 18, 18)
+                .addComponent(btnPayments)
+                .addGap(18, 18, 18)
+                .addComponent(btnReports)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExit)
+                .addGap(39, 39, 39))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(58, 63, 72));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Welcome Back!");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Clinic Overview");
+
+        jPanel5.setBackground(new java.awt.Color(35, 40, 58));
+        jPanel5.setForeground(new java.awt.Color(35, 40, 58));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Registered Pets");
+
+        lblPets.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPets.setForeground(new java.awt.Color(255, 255, 255));
+        lblPets.setText("0");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(lblPets)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(73, 73, 73))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPets)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(35, 40, 58));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Upcoming Appointments");
+
+        lblAppointments.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblAppointments.setForeground(new java.awt.Color(255, 255, 255));
+        lblAppointments.setText("0");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblAppointments)
+                        .addGap(122, 122, 122))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAppointments)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnPet, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Upcoming Appointments");
+
+        tblUpcomingAppointments.setBackground(new java.awt.Color(71, 78, 92));
+        tblUpcomingAppointments.setForeground(new java.awt.Color(255, 255, 255));
+
+        tlbUpcomingAppointments.setBackground(new java.awt.Color(58, 63, 72));
+        tlbUpcomingAppointments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Appointment ID", "Pet Name", "Customer Name", "Date", "Time", "Service Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblUpcomingAppointments.setViewportView(tlbUpcomingAppointments);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(tblUpcomingAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 17, Short.MAX_VALUE))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(tblUpcomingAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        
-        new CustomerForm().setVisible(true);
-        
-    }//GEN-LAST:event_btnCustomerActionPerformed
-
-    private void btnPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetActionPerformed
+    private void btnPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetsActionPerformed
         
         new PetForm().setVisible(true);
+        this.dispose();
         
-    }//GEN-LAST:event_btnPetActionPerformed
+    }//GEN-LAST:event_btnPetsActionPerformed
 
-    private void btnAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentActionPerformed
-        
-        new AppointmentForm().setVisible(true);
-        
-    }//GEN-LAST:event_btnAppointmentActionPerformed
-
-    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+    private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
         
         new PaymentForm().setVisible(true);
+        this.dispose();
         
-    }//GEN-LAST:event_btnPaymentActionPerformed
+    }//GEN-LAST:event_btnPaymentsActionPerformed
+
+    private void btnCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomersActionPerformed
+        
+        new CustomerForm().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnCustomersActionPerformed
+
+    private void btnAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentsActionPerformed
+        
+        new AppointmentForm().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnAppointmentsActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         
-        System.exit(0);
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION); {
+        
+        if(answer == JOptionPane.YES_OPTION) {
+            
+            System.exit(0);
+            
+        }
+        
+    }
         
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
+        
+        new ReportForm().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnReportsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,13 +492,28 @@ public class DashboardForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAppointment;
-    private javax.swing.JButton btnCustomer;
+    private javax.swing.JButton btnAppointments;
+    private javax.swing.JButton btnCustomers;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnPayment;
-    private javax.swing.JButton btnPet;
+    private javax.swing.JButton btnPayments;
+    private javax.swing.JButton btnPets;
+    private javax.swing.JButton btnReports;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblAppointments;
+    private javax.swing.JLabel lblPets;
+    private javax.swing.JScrollPane tblUpcomingAppointments;
+    private javax.swing.JTable tlbUpcomingAppointments;
     // End of variables declaration//GEN-END:variables
 }

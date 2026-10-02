@@ -308,6 +308,15 @@ public class PetForm extends javax.swing.JFrame {
         
         String petName = txtPetName.getText();
         String petType = txtPetType.getText();
+        
+        if(txtPetName.getText().trim().isEmpty()
+                || txtPetType.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            return;
+            
+        }
+        
         int petAge = Integer.parseInt(txtPetAge.getText());
         int customerID = Integer.parseInt(cmbCustomerID.getSelectedItem().toString());
         

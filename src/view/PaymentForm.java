@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import model.Payment;
 import javax.swing.JOptionPane;
+import exception.InvalidAmountException;
 
 /**
  *
@@ -314,9 +315,34 @@ public class PaymentForm extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
         int appointmentID = Integer.parseInt(cmbAppointmentID.getSelectedItem().toString());
+        
+        if(txtAmount.getText().trim().isEmpty()
+            || txtPaymentDate.getText().trim().isEmpty()
+            || txtPaymentMethod.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            return;
+
+        }
+        
         double amount = Double.parseDouble(txtAmount.getText());
         String paymentDate = txtPaymentDate.getText();
         String paymentMethod = txtPaymentMethod.getText();
+        
+        try {
+            
+            if(amount <= 0) {
+                
+                throw new InvalidAmountException("Amount must be greater than 0!");
+                
+            }
+            
+        } catch (InvalidAmountException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            return;
+            
+        }
         
         Payment payment = new Payment();
         
@@ -389,6 +415,15 @@ public class PaymentForm extends javax.swing.JFrame {
         double amount = Double.parseDouble(txtAmount.getText());
         String paymentDate = txtPaymentDate.getText();
         String paymentMethod = txtPaymentMethod.getText();
+        
+        if(txtAmount.getText().trim().isEmpty()
+            || txtPaymentDate.getText().trim().isEmpty()
+            || txtPaymentMethod.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            return;
+
+        }
         
         Payment payment = new Payment();
         

@@ -302,6 +302,15 @@ public class AppointmentForm extends javax.swing.JFrame {
         String appointmentTime = txtAppointmentTime.getText();
         String reason = txtReason.getText();
         
+        if(txtAppointmentDate.getText().trim().isEmpty()
+            || txtAppointmentTime.getText().trim().isEmpty()
+            || txtReason.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            return;
+                
+        }
+        
         Appointment appointment = new Appointment();
         
         appointment.setPetID(petID);
@@ -373,6 +382,15 @@ public class AppointmentForm extends javax.swing.JFrame {
         String appointmentDate = txtAppointmentDate.getText();
         String appointmentTime = txtAppointmentTime.getText();
         String reason = txtReason.getText();
+        
+        if(txtAppointmentDate.getText().trim().isEmpty()
+            || txtAppointmentTime.getText().trim().isEmpty()
+            || txtReason.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Please fill in all the fields!");
+            return;
+
+        }
         
         Appointment appointment = new Appointment();
         
