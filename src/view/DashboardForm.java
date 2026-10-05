@@ -26,6 +26,9 @@ public class DashboardForm extends javax.swing.JFrame {
         initComponents();
         loadDashboardCounts();
         loadUpcomingAppointments();
+        setTitle("Dashboard - Pet Clinic Management System");
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
     
     public void loadDashboardCounts() {
@@ -125,6 +128,7 @@ public class DashboardForm extends javax.swing.JFrame {
         btnPayments = new javax.swing.JButton();
         btnReports = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -152,7 +156,7 @@ public class DashboardForm extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(30, 34, 48));
+        setBackground(new java.awt.Color(58, 63, 72));
 
         jPanel1.setBackground(new java.awt.Color(24, 28, 40));
         jPanel1.setForeground(new java.awt.Color(24, 28, 0));
@@ -184,37 +188,99 @@ public class DashboardForm extends javax.swing.JFrame {
         btnCustomers.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCustomers.setForeground(new java.awt.Color(255, 255, 255));
         btnCustomers.setText("Customers");
+        btnCustomers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCustomersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCustomersMouseExited(evt);
+            }
+        });
         btnCustomers.addActionListener(this::btnCustomersActionPerformed);
 
         btnPets.setBackground(new java.awt.Color(17, 24, 39));
         btnPets.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPets.setForeground(new java.awt.Color(255, 255, 255));
         btnPets.setText("Pets");
+        btnPets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPetsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPetsMouseExited(evt);
+            }
+        });
         btnPets.addActionListener(this::btnPetsActionPerformed);
 
         btnAppointments.setBackground(new java.awt.Color(17, 24, 39));
         btnAppointments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAppointments.setForeground(new java.awt.Color(255, 255, 255));
         btnAppointments.setText("Appointments");
+        btnAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAppointmentsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAppointmentsMouseExited(evt);
+            }
+        });
         btnAppointments.addActionListener(this::btnAppointmentsActionPerformed);
 
         btnPayments.setBackground(new java.awt.Color(17, 24, 39));
         btnPayments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPayments.setForeground(new java.awt.Color(255, 255, 255));
         btnPayments.setText("Payments");
+        btnPayments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPaymentsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPaymentsMouseExited(evt);
+            }
+        });
         btnPayments.addActionListener(this::btnPaymentsActionPerformed);
 
         btnReports.setBackground(new java.awt.Color(17, 24, 39));
         btnReports.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnReports.setForeground(new java.awt.Color(255, 255, 255));
         btnReports.setText("Reports");
+        btnReports.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReportsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReportsMouseExited(evt);
+            }
+        });
         btnReports.addActionListener(this::btnReportsActionPerformed);
 
         btnExit.setBackground(new java.awt.Color(17, 24, 39));
         btnExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setText("Exit");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
         btnExit.addActionListener(this::btnExitActionPerformed);
+
+        btnLogout.setBackground(new java.awt.Color(17, 24, 39));
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Logout");
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseExited(evt);
+            }
+        });
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -223,26 +289,29 @@ public class DashboardForm extends javax.swing.JFrame {
             .addComponent(btnCustomers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-            .addComponent(btnPayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnReports, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(btnCustomers)
+                .addComponent(btnCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPets, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPets, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAppointments)
+                .addComponent(btnAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPayments)
+                .addComponent(btnPayments, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReports)
+                .addComponent(btnReports, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnExit)
-                .addGap(39, 39, 39))
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         jPanel4.setBackground(new java.awt.Color(58, 63, 72));
@@ -411,7 +480,9 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -466,6 +537,103 @@ public class DashboardForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnReportsActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        
+        int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
+        
+        if(answer == JOptionPane.YES_OPTION) {
+            
+            new LoginForm().setVisible(true);
+            this.dispose();
+            
+        }
+        
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnCustomersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomersMouseEntered
+        
+        btnCustomers.setBackground(new java.awt.Color(88, 101, 242));
+        
+    }//GEN-LAST:event_btnCustomersMouseEntered
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        
+        btnExit.setBackground(new java.awt.Color(107, 114, 128));
+        
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnCustomersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomersMouseExited
+        
+        btnCustomers.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnCustomersMouseExited
+
+    private void btnPetsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPetsMouseEntered
+        
+        btnPets.setBackground(new java.awt.Color(88, 101, 242));
+        
+    }//GEN-LAST:event_btnPetsMouseEntered
+
+    private void btnAppointmentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAppointmentsMouseEntered
+        
+        btnAppointments.setBackground(new java.awt.Color(88, 101, 242));
+        
+    }//GEN-LAST:event_btnAppointmentsMouseEntered
+
+    private void btnPaymentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaymentsMouseEntered
+        
+        btnPayments.setBackground(new java.awt.Color(88, 101, 242));
+        
+    }//GEN-LAST:event_btnPaymentsMouseEntered
+
+    private void btnReportsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseEntered
+        
+        btnReports.setBackground(new java.awt.Color(88, 101, 242));
+        
+    }//GEN-LAST:event_btnReportsMouseEntered
+
+    private void btnPetsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPetsMouseExited
+        
+        btnPets.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnPetsMouseExited
+
+    private void btnAppointmentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAppointmentsMouseExited
+        
+        btnAppointments.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnAppointmentsMouseExited
+
+    private void btnPaymentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaymentsMouseExited
+        
+        btnPayments.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnPaymentsMouseExited
+
+    private void btnReportsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReportsMouseExited
+        
+        btnReports.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnReportsMouseExited
+
+    private void btnLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseEntered
+        
+        btnLogout.setBackground(new java.awt.Color(107, 114, 128));
+        
+    }//GEN-LAST:event_btnLogoutMouseEntered
+
+    private void btnLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseExited
+        
+        btnLogout.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnLogoutMouseExited
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        
+        btnExit.setBackground(new java.awt.Color(17,24,39));
+        
+    }//GEN-LAST:event_btnExitMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +663,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnCustomers;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPayments;
     private javax.swing.JButton btnPets;
     private javax.swing.JButton btnReports;

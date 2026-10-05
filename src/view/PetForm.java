@@ -24,9 +24,21 @@ public class PetForm extends javax.swing.JFrame {
      * Creates new form PetForm
      */
     public PetForm() {
+        
         initComponents();
         loadCustomerIDs();
         loadPets();
+        setTitle("Pet Management");
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        btnSave.setToolTipText("Save Pet Record");
+        btnUpdate.setToolTipText("Update Pet Record");
+        btnDelete.setToolTipText("Delete Pet Record");
+        btnClear.setToolTipText("Clear All Fields");
+        btnBack.setToolTipText("Return to Dashboard");
+        btnSearch.setToolTipText("Search Pet");
+        
     }
     
     public void loadCustomerIDs() {
@@ -121,8 +133,12 @@ public class PetForm extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(58, 63, 72));
+
+        jPanel1.setBackground(new java.awt.Color(24, 28, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pet Management");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -139,36 +155,85 @@ public class PetForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(58, 63, 72));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Pet ID");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Pet Name");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pet Type");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Pet Age");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Customer ID");
 
         txtPetID.setEditable(false);
 
+        btnSave.setBackground(new java.awt.Color(75, 85, 99));
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Save");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+        });
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
+        btnUpdate.setBackground(new java.awt.Color(75, 85, 99));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseExited(evt);
+            }
+        });
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
+        btnDelete.setBackground(new java.awt.Color(75, 85, 99));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseExited(evt);
+            }
+        });
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
+        btnClear.setBackground(new java.awt.Color(75, 85, 99));
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
+        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClearMouseExited(evt);
+            }
+        });
         btnClear.addActionListener(this::btnClearActionPerformed);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Search Pet ID");
 
+        tblPets.setBackground(new java.awt.Color(71, 78, 92));
         tblPets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -192,10 +257,30 @@ public class PetForm extends javax.swing.JFrame {
 
         cmbCustomerID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnSearch.setBackground(new java.awt.Color(75, 85, 99));
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSearchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSearchMouseExited(evt);
+            }
+        });
         btnSearch.addActionListener(this::btnSearchActionPerformed);
 
+        btnBack.setBackground(new java.awt.Color(75, 85, 99));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
         btnBack.addActionListener(this::btnBackActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -242,15 +327,16 @@ public class PetForm extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtPetID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSearchPetID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch))))
@@ -283,7 +369,7 @@ public class PetForm extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -380,6 +466,13 @@ public class PetForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        if(txtSearchPetID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please enter a Pet ID to search!");
+            return;
+            
+        }
         
         int petID = Integer.parseInt(txtSearchPetID.getText());
         
@@ -412,6 +505,13 @@ public class PetForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        if(txtPetID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please search and select a pet to update!");
+            return;
+            
+        }
         
         int petID = Integer.parseInt(txtPetID.getText());
         String petName = txtPetName.getText();
@@ -468,6 +568,13 @@ public class PetForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        if(txtPetID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please search and select a pet to delete!");
+            return;
+            
+        }
         
         int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this pet?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         
@@ -508,6 +615,78 @@ public class PetForm extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
+        
+        btnSave.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnSaveMouseEntered
+
+    private void btnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseEntered
+        
+        btnUpdate.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnUpdateMouseEntered
+
+    private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
+        
+        btnDelete.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnDeleteMouseEntered
+
+    private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
+        
+        btnClear.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnClearMouseEntered
+
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        
+        btnBack.setBackground(new java.awt.Color(107,114,128));
+        
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseEntered
+        
+        btnSearch.setBackground(new java.awt.Color(129, 140, 248));
+        
+    }//GEN-LAST:event_btnSearchMouseEntered
+
+    private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
+        
+        btnSave.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnSaveMouseExited
+
+    private void btnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseExited
+        
+        btnUpdate.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnUpdateMouseExited
+
+    private void btnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseExited
+        
+        btnDelete.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnDeleteMouseExited
+
+    private void btnClearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseExited
+        
+        btnClear.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnClearMouseExited
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        
+        btnBack.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseExited
+        
+        btnSearch.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnSearchMouseExited
 
     /**
      * @param args the command line arguments

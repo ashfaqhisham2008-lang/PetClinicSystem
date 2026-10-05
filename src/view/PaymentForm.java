@@ -23,9 +23,21 @@ public class PaymentForm extends javax.swing.JFrame {
      * Creates new form PaymentForm
      */
     public PaymentForm() {
+        
         initComponents();
         loadAppointmentIDs();
         loadPayments();
+        setTitle("Payment Management");
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        btnSave.setToolTipText("Save Payment Record");
+        btnUpdate.setToolTipText("Update Payment Record");
+        btnDelete.setToolTipText("Delete Payment Record");
+        btnClear.setToolTipText("Clear All Fields");
+        btnBack.setToolTipText("Return to Dashboard");
+        btnSearch.setToolTipText("Search Payment");
+        
     }
     
     public void loadAppointmentIDs() {
@@ -121,7 +133,10 @@ public class PaymentForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(24, 28, 40));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Payment Management");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -141,26 +156,35 @@ public class PaymentForm extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        jPanel2.setBackground(new java.awt.Color(58, 63, 72));
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Payment ID");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Appointment ID");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Amount");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Payment Date");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Payment Method");
 
         txtPaymentID.setEditable(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Search Payment ID");
 
+        tblPayment.setBackground(new java.awt.Color(71, 78, 92));
         tblPayment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -182,24 +206,84 @@ public class PaymentForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPayment);
 
+        btnSave.setBackground(new java.awt.Color(75, 85, 99));
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Save");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+        });
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
+        btnUpdate.setBackground(new java.awt.Color(75, 85, 99));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseExited(evt);
+            }
+        });
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
+        btnDelete.setBackground(new java.awt.Color(75, 85, 99));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseExited(evt);
+            }
+        });
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
+        btnClear.setBackground(new java.awt.Color(75, 85, 99));
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
+        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClearMouseExited(evt);
+            }
+        });
         btnClear.addActionListener(this::btnClearActionPerformed);
 
+        btnSearch.setBackground(new java.awt.Color(75, 85, 99));
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
+        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSearchMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSearchMouseExited(evt);
+            }
+        });
         btnSearch.addActionListener(this::btnSearchActionPerformed);
 
         cmbAppointmentID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnBack.setBackground(new java.awt.Color(75, 85, 99));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBackMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBackMouseExited(evt);
+            }
+        });
         btnBack.addActionListener(this::btnBackActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -221,8 +305,8 @@ public class PaymentForm extends javax.swing.JFrame {
                             .addComponent(txtPaymentMethod)
                             .addComponent(txtPaymentDate)
                             .addComponent(txtAmount)
-                            .addComponent(txtPaymentID)
-                            .addComponent(cmbAppointmentID, 0, 275, Short.MAX_VALUE)))
+                            .addComponent(cmbAppointmentID, 0, 275, Short.MAX_VALUE)
+                            .addComponent(txtPaymentID)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
@@ -288,7 +372,7 @@ public class PaymentForm extends javax.swing.JFrame {
                             .addComponent(btnDelete)
                             .addComponent(btnClear))
                         .addGap(29, 29, 29)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -377,6 +461,13 @@ public class PaymentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+
+        if(txtSearchPaymentID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "please enter a Payment ID to search!");
+            return;
+            
+        }
         
         int paymentID = Integer.parseInt(txtSearchPaymentID.getText());
         
@@ -409,6 +500,13 @@ public class PaymentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        if(txtPaymentID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please search and select a payment to update!");
+            return;
+            
+        }
         
         int paymentID = Integer.parseInt(txtPaymentID.getText());
         int appointmentID = Integer.parseInt(cmbAppointmentID.getSelectedItem().toString());
@@ -470,6 +568,13 @@ public class PaymentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+
+        if(txtPaymentID.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please search and select a payment to delete!");
+            return;
+            
+        }
         
         int answer = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this payment?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
         
@@ -510,6 +615,78 @@ public class PaymentForm extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseEntered
+        
+        btnSearch.setBackground(new java.awt.Color(129, 140, 248));
+        
+    }//GEN-LAST:event_btnSearchMouseEntered
+
+    private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
+        
+        btnSave.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnSaveMouseEntered
+
+    private void btnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseEntered
+        
+        btnUpdate.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnUpdateMouseEntered
+
+    private void btnDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseEntered
+        
+        btnDelete.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnDeleteMouseEntered
+
+    private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
+        
+        btnClear.setBackground(new java.awt.Color(99,102,241));
+        
+    }//GEN-LAST:event_btnClearMouseEntered
+
+    private void btnBackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseEntered
+        
+        btnBack.setBackground(new java.awt.Color(107,114,128));
+        
+    }//GEN-LAST:event_btnBackMouseEntered
+
+    private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
+        
+        btnSave.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnSaveMouseExited
+
+    private void btnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseExited
+        
+        btnUpdate.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnUpdateMouseExited
+
+    private void btnDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseExited
+        
+        btnDelete.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnDeleteMouseExited
+
+    private void btnClearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseExited
+        
+        btnClear.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnClearMouseExited
+
+    private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
+        
+        btnBack.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnBackMouseExited
+
+    private void btnSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseExited
+        
+        btnSearch.setBackground(new java.awt.Color(75,85,99));
+        
+    }//GEN-LAST:event_btnSearchMouseExited
 
     /**
      * @param args the command line arguments

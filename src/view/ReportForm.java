@@ -22,6 +22,9 @@ public class ReportForm extends javax.swing.JFrame {
      */
     public ReportForm() {
         initComponents();
+        setTitle("Reports Center");
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -100,6 +103,14 @@ public class ReportForm extends javax.swing.JFrame {
         GenCustomerReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         GenCustomerReport.setForeground(new java.awt.Color(255, 255, 255));
         GenCustomerReport.setText("Generate Report");
+        GenCustomerReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GenCustomerReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GenCustomerReportMouseExited(evt);
+            }
+        });
         GenCustomerReport.addActionListener(this::GenCustomerReportActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -107,18 +118,18 @@ public class ReportForm extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(GenCustomerReport)
-                        .addGap(69, 69, 69))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(60, 60, 60))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(GenCustomerReport)
+                        .addGap(69, 69, 69))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,6 +157,14 @@ public class ReportForm extends javax.swing.JFrame {
         PetCustomerReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         PetCustomerReport.setForeground(new java.awt.Color(255, 255, 255));
         PetCustomerReport.setText("Generate Report");
+        PetCustomerReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PetCustomerReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PetCustomerReportMouseExited(evt);
+            }
+        });
         PetCustomerReport.addActionListener(this::PetCustomerReportActionPerformed);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -191,6 +210,14 @@ public class ReportForm extends javax.swing.JFrame {
         GenAppointmentReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         GenAppointmentReport.setForeground(new java.awt.Color(255, 255, 255));
         GenAppointmentReport.setText("Generate Report");
+        GenAppointmentReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GenAppointmentReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GenAppointmentReportMouseExited(evt);
+            }
+        });
         GenAppointmentReport.addActionListener(this::GenAppointmentReportActionPerformed);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -200,14 +227,16 @@ public class ReportForm extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(GenAppointmentReport, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(42, 42, 42)))
+                        .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GenAppointmentReport)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,6 +264,14 @@ public class ReportForm extends javax.swing.JFrame {
         GenPaymentReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         GenPaymentReport.setForeground(new java.awt.Color(255, 255, 255));
         GenPaymentReport.setText("Generate Report");
+        GenPaymentReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                GenPaymentReportMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                GenPaymentReportMouseExited(evt);
+            }
+        });
         GenPaymentReport.addActionListener(this::GenPaymentReportActionPerformed);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -400,6 +437,54 @@ public class ReportForm extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void GenCustomerReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenCustomerReportMouseEntered
+        
+        GenCustomerReport.setBackground(new java.awt.Color(129, 140, 248));
+        
+    }//GEN-LAST:event_GenCustomerReportMouseEntered
+
+    private void PetCustomerReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PetCustomerReportMouseEntered
+        
+        PetCustomerReport.setBackground(new java.awt.Color(129, 140, 248));
+        
+    }//GEN-LAST:event_PetCustomerReportMouseEntered
+
+    private void GenAppointmentReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenAppointmentReportMouseEntered
+
+        GenAppointmentReport.setBackground(new java.awt.Color(129, 140, 248));
+
+    }//GEN-LAST:event_GenAppointmentReportMouseEntered
+
+    private void GenPaymentReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenPaymentReportMouseEntered
+        
+        GenPaymentReport.setBackground(new java.awt.Color(129, 140, 248));
+        
+    }//GEN-LAST:event_GenPaymentReportMouseEntered
+
+    private void GenCustomerReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenCustomerReportMouseExited
+        
+        GenCustomerReport.setBackground(new java.awt.Color(59,130,246));
+        
+    }//GEN-LAST:event_GenCustomerReportMouseExited
+
+    private void PetCustomerReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PetCustomerReportMouseExited
+        
+        PetCustomerReport.setBackground(new java.awt.Color(59,130,246));
+        
+    }//GEN-LAST:event_PetCustomerReportMouseExited
+
+    private void GenAppointmentReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenAppointmentReportMouseExited
+        
+        GenAppointmentReport.setBackground(new java.awt.Color(59,130,246));
+        
+    }//GEN-LAST:event_GenAppointmentReportMouseExited
+
+    private void GenPaymentReportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenPaymentReportMouseExited
+        
+        GenPaymentReport.setBackground(new java.awt.Color(59,130,246));
+        
+    }//GEN-LAST:event_GenPaymentReportMouseExited
 
     /**
      * @param args the command line arguments
