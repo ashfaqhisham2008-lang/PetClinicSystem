@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2026 at 10:58 AM
+-- Generation Time: Oct 05, 2026 at 12:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,14 +35,6 @@ CREATE TABLE `appointment` (
   `service_type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`appointment_ID`, `pet_ID`, `appointment_date`, `appointment_time`, `service_type`) VALUES
-(1, 1, '2026-08-01', '18:30:00', 'Vaccine'),
-(6, 1, '2026-10-10', '18:30:00', 'Vaccine');
-
 -- --------------------------------------------------------
 
 --
@@ -55,14 +47,6 @@ CREATE TABLE `customer` (
   `phone` varchar(15) NOT NULL,
   `address` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`customer_ID`, `customer_name`, `phone`, `address`) VALUES
-(1, 'Ashfaq', '1234567890', 'Colombo'),
-(4, 'Batman', '1234567890', 'BatCave');
 
 -- --------------------------------------------------------
 
@@ -78,14 +62,6 @@ CREATE TABLE `payment` (
   `payment_method` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `payment`
---
-
-INSERT INTO `payment` (`payment_ID`, `appointment_ID`, `amount`, `payment_date`, `payment_method`) VALUES
-(1, 1, 2500.00, '2026-10-10', 'Card'),
-(5, 1, 5500.00, '2026-10-10', 'Cash');
-
 -- --------------------------------------------------------
 
 --
@@ -99,15 +75,6 @@ CREATE TABLE `pet` (
   `pet_age` int(3) NOT NULL,
   `customer_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pet`
---
-
-INSERT INTO `pet` (`pet_ID`, `pet_name`, `pet_type`, `pet_age`, `customer_ID`) VALUES
-(1, 'Max', 'Dog', 2, 1),
-(3, 'Dino', 'Cat', 1, 1),
-(5, 'gg', 'dinosaur', 9980098, 4);
 
 -- --------------------------------------------------------
 
@@ -172,25 +139,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `appointment_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `customer_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `payment_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `pet_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pet_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
