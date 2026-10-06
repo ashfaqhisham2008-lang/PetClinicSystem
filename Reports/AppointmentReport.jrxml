@@ -1,0 +1,192 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="AppointmentReport" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0fa9916d-6aa3-49fc-a2ed-fffd2a841c3b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<query language="sql"><![CDATA[SELECT
+c.customer_name,
+p.pet_name,
+p.pet_type,
+a.appointment_date,
+a.appointment_time,
+a.service_type
+FROM customer c
+INNER JOIN pet p
+ON c.customer_ID = p.customer_ID
+INNER JOIN appointment a
+ON p.pet_ID = a.pet_ID]]></query>
+	<field name="customer_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="customer_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="pet_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pet_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="pet_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pet_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="appointment_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="appointment_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="appointment_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="appointment_time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="appointment_time"/>
+		<property name="com.jaspersoft.studio.field.label" value="appointment_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="service_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="service_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="service_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="3ac19c3b-3358-4bb4-bab1-751fff263f27" x="240" y="49" width="290" height="30" fontSize="22.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Appointment Report]]></text>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="9ba6ebe7-1d3f-4c7c-8e01-8f600be83e2c" x="10" y="31" width="130" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="875ce577-c2ec-421d-b1fc-cc7c803fc5ce"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Customer Name]]></text>
+		</element>
+		<element kind="staticText" uuid="48958904-95f1-4e09-81b0-781d77e8d480" x="140" y="31" width="120" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="909822c0-3417-4556-9280-14892a73fa64"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet Name]]></text>
+		</element>
+		<element kind="staticText" uuid="cfb6e6e3-053f-4e2b-8dac-e3b298a6e17d" x="260" y="31" width="110" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8907f8a-990f-42c5-9afb-f08ef7618ca8"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet Type]]></text>
+		</element>
+		<element kind="staticText" uuid="49690e1f-0882-4feb-b2b4-e2a4779a4071" x="370" y="31" width="160" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e291aa4a-3484-4943-81d4-44d75b9527a9"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Appointment Date]]></text>
+		</element>
+		<element kind="staticText" uuid="617e91c8-2a59-4763-bd00-815180cbecbc" x="530" y="31" width="140" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f9f7fc71-9b3b-4c68-8848-5257a0453585"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Appointment Time]]></text>
+		</element>
+		<element kind="staticText" uuid="e23dd5fa-f690-4547-9d77-f59066fc5e5d" x="670" y="31" width="111" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="05f77733-0411-4611-acd8-c2cd3ec369b6"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Service Type]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<element kind="textField" uuid="aa952b95-eb0a-4a8a-8ff1-0dc8e0e8dfaf" x="10" y="0" width="130" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="875ce577-c2ec-421d-b1fc-cc7c803fc5ce"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{customer_name}]]></expression>
+			</element>
+			<element kind="textField" uuid="3941758d-4c71-4dc4-ad39-631fd328d75d" x="140" y="0" width="120" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="909822c0-3417-4556-9280-14892a73fa64"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_name}]]></expression>
+			</element>
+			<element kind="textField" uuid="6bcbf5a4-dd6d-486a-a1d5-54da699b770e" x="260" y="0" width="110" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e8907f8a-990f-42c5-9afb-f08ef7618ca8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_type}]]></expression>
+			</element>
+			<element kind="textField" uuid="cf06cd8b-0142-4277-8391-ce6a34477efb" x="370" y="0" width="160" height="30" fontSize="14.0" pattern="dd/MM/yyyy" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e291aa4a-3484-4943-81d4-44d75b9527a9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{appointment_date}]]></expression>
+			</element>
+			<element kind="textField" uuid="3fdfe275-4758-42dd-af36-cb39f9849518" x="530" y="0" width="140" height="30" fontSize="14.0" pattern="hh:mm a" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f9f7fc71-9b3b-4c68-8848-5257a0453585"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{appointment_time}]]></expression>
+			</element>
+			<element kind="textField" uuid="23933b21-1356-4b35-9bd7-b280720cc30f" x="670" y="0" width="111" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="05f77733-0411-4611-acd8-c2cd3ec369b6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{service_type}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnFooter>
+	<pageFooter splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageFooter>
+	<summary splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,163 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="PetReport" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac673102-5aa1-479d-a023-80920df94c16">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<query language="sql"><![CDATA[SELECT * FROM pet]]></query>
+	<field name="pet_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="pet_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="pet_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pet_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="pet_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pet_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="pet_age" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="pet_age"/>
+		<property name="com.jaspersoft.studio.field.label" value="pet_age"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<field name="customer_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="customer_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pet"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="80" splitType="Stretch">
+		<element kind="staticText" uuid="618df17a-aed5-4ff6-b369-fb9b28e5f69b" x="300" y="50" width="210" height="30" fontSize="22.0" bold="true" underline="false" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<text><![CDATA[Pet Report]]></text>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageHeader>
+	<columnHeader height="60" splitType="Stretch">
+		<element kind="staticText" uuid="32ba7e12-969c-4955-a09d-5cbd579c8e45" x="130" y="30" width="100" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet ID]]></text>
+		</element>
+		<element kind="staticText" uuid="9a373194-62c2-4c22-850f-68298f4fd52e" x="230" y="30" width="110" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet Name]]></text>
+		</element>
+		<element kind="staticText" uuid="d3ad0bb1-eae3-462b-92bc-849e30551527" x="340" y="30" width="110" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet Type]]></text>
+		</element>
+		<element kind="staticText" uuid="a192f038-1fea-4c57-94ed-aed1a9c77f94" x="450" y="30" width="110" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Pet Age]]></text>
+		</element>
+		<element kind="staticText" uuid="22aef381-edbc-40f5-8784-11bc68a0fcc8" x="560" y="30" width="120" height="30" fontSize="15.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PetClinicDB"/>
+			<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Customer ID]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<element kind="textField" uuid="ee49bc03-b622-43f0-9589-f464057f664a" x="130" y="0" width="100" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="87f9ebb3-7b93-442d-a3ca-6988288fe5fb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_ID}]]></expression>
+			</element>
+			<element kind="textField" uuid="29796ac8-2266-40b3-ad13-3976717ea0fd" x="230" y="0" width="110" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d5084c57-d372-4bbe-b67c-bd2fc5e0f64a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_name}]]></expression>
+			</element>
+			<element kind="textField" uuid="14cb964a-ec55-4f8e-958d-589d7b713412" x="340" y="0" width="110" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bd041f07-2e38-4f93-9ebf-4135ea36e515"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_type}]]></expression>
+			</element>
+			<element kind="textField" uuid="55f4d183-362b-45ae-81e3-c6c72156ef55" x="450" y="0" width="110" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4d3689db-06ac-46cb-b1c8-2a5433c4fb20"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{pet_age}]]></expression>
+			</element>
+			<element kind="textField" uuid="50defe90-2a27-4005-864b-bdd01984653f" x="560" y="0" width="120" height="30" fontSize="14.0" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="98252dd8-bb1d-4b82-9b24-7e394add1d78"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<expression><![CDATA[$F{customer_ID}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</columnFooter>
+	<pageFooter splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageFooter>
+	<summary splitType="Stretch">
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</summary>
+</jasperReport>

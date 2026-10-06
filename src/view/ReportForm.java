@@ -56,7 +56,7 @@ public class ReportForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         GenPaymentReport = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -301,11 +301,11 @@ public class ReportForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton5.setBackground(new java.awt.Color(75, 85, 99));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Back");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        btnBack.setBackground(new java.awt.Color(75, 85, 99));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back");
+        btnBack.addActionListener(this::btnBackActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,7 +328,7 @@ public class ReportForm extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(385, 385, 385))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(btnBack)
                         .addGap(461, 461, 461))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -345,7 +345,7 @@ public class ReportForm extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(btnBack)
                 .addGap(47, 47, 47))
         );
 
@@ -371,7 +371,7 @@ public class ReportForm extends javax.swing.JFrame {
         
         try {
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport("C:\\Users\\ashfa\\JaspersoftWorkspace\\MyReports\\CustomerReport.jasper", null, DBConnection.getConnection());
+            JasperPrint jasperPrint = JasperFillManager.fillReport("Reports/CustomerReport.jasper", null, DBConnection.getConnection());
 
             JasperViewer.viewReport(jasperPrint, false);
 
@@ -387,7 +387,7 @@ public class ReportForm extends javax.swing.JFrame {
         
         try {
             
-            JasperPrint jasperPrint = JasperFillManager.fillReport("C:\\Users\\ashfa\\JaspersoftWorkspace\\MyReports\\PetReport.jasper", null, DBConnection.getConnection());
+            JasperPrint jasperPrint = JasperFillManager.fillReport("Reports/PetReport.jasper", null, DBConnection.getConnection());
             
             JasperViewer.viewReport(jasperPrint, false);
             
@@ -403,7 +403,7 @@ public class ReportForm extends javax.swing.JFrame {
         
         try {
             
-            JasperPrint jasperPrint = JasperFillManager.fillReport("C:\\Users\\ashfa\\JaspersoftWorkspace\\MyReports\\AppointmentReport.jasper", null, DBConnection.getConnection());
+            JasperPrint jasperPrint = JasperFillManager.fillReport("Reports/AppointmentReport.jasper", null, DBConnection.getConnection());
             
             JasperViewer.viewReport(jasperPrint, false);
             
@@ -419,7 +419,7 @@ public class ReportForm extends javax.swing.JFrame {
         
             try {
                 
-                JasperPrint jasperPrint = JasperFillManager.fillReport("C:\\Users\\ashfa\\JaspersoftWorkspace\\MyReports\\PaymentReport.jasper", null, DBConnection.getConnection());
+                JasperPrint jasperPrint = JasperFillManager.fillReport("Reports/PaymentReport.jasper", null, DBConnection.getConnection());
         
                 JasperViewer.viewReport(jasperPrint, false);
                 
@@ -431,12 +431,12 @@ public class ReportForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_GenPaymentReportActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         
         new DashboardForm().setVisible(true);
         this.dispose();
         
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void GenCustomerReportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GenCustomerReportMouseEntered
         
@@ -516,7 +516,7 @@ public class ReportForm extends javax.swing.JFrame {
     private javax.swing.JButton GenCustomerReport;
     private javax.swing.JButton GenPaymentReport;
     private javax.swing.JButton PetCustomerReport;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
